@@ -18,19 +18,22 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import com.eft.homework.pojo.HttpsResult;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public final class HomeworkUtil {
 	
-	
-	public static String TOKEN;
+
 	public static String EMAIL;
 	public static String PASSWORD;
+	public static String TOKEN;
 	
 	
-	public static String sendHttpRequest(HomeworkEnums.ClearSettle clearSettle, Map<String, Object> params){
+	public static HttpsResult sendHttpRequest(HomeworkEnums.ClearSettle clearSettle, Map<String, Object> params){
+		HttpsResult result = new HttpsResult();
+
 		try {
 			
 			// Configure the SSLContext with a TrustManager
@@ -60,13 +63,6 @@ public final class HomeworkUtil {
 			conn.setDoOutput(true);
 
 			conn.getOutputStream().write(postDataBytes);
-
-			/*conn.setHostnameVerifier(new HostnameVerifier() {
-				@Override
-				public boolean verify(String arg0, SSLSession arg1) {
-					return true;
-				}
-			});*/
 			
 			
 			if(conn.getResponseCode() == 200){
@@ -78,11 +74,12 @@ public final class HomeworkUtil {
 		            builder.append(line);
 		        }
 				
-				return builder.toString();
+				result.setResponseCode(conn.getResponseCode());
+				result.setJsonResult(builder.toString());
 				
 			}else{
-				System.out.println("ResponseCode = "+conn.getResponseCode());
-				System.out.println("ResponseMessage = "+conn.getResponseMessage());
+				result.setResponseCode(conn.getResponseCode());
+				result.setResposenMessage(conn.getResponseMessage());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -94,7 +91,7 @@ public final class HomeworkUtil {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return result;
 		
 	}
 

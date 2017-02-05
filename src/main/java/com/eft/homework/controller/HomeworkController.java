@@ -33,7 +33,6 @@ public class HomeworkController {
 	public Login login(@RequestParam(value = "email", required = true ) String email,
 			@RequestParam(value = "password", required = true) String password) {
 		
-
 		//We save email and password automatically authenticate when token is expired.
 		HomeworkUtil.EMAIL = email;
 		HomeworkUtil.PASSWORD = password;
@@ -43,7 +42,7 @@ public class HomeworkController {
 	
 	
 	/**
-	 * Report Api only
+	 * Report Api
 	 * 
 	 * @param fromDate
 	 * @param toDate
@@ -62,15 +61,15 @@ public class HomeworkController {
 	
 	
 	/**
-	 * Transaction List Api. All parameter is not mandatory
+	 * Transaction List Api
 	 * 
 	 * @param fromDate
 	 * @param toDate
 	 * @return
 	 */
 	@RequestMapping("/transactionList")
-	public String getTransactionList(@RequestParam(value = "fromDate") String fromDate
-			, @RequestParam(value = "toDate") String toDate) {
+	public String getTransactionList(@RequestParam(value = "fromDate") String fromDate,
+			@RequestParam(value = "toDate") String toDate) {
 		return homeworkService.getTransactionList(fromDate, toDate);
 	}	
 	
@@ -89,14 +88,24 @@ public class HomeworkController {
 		
 
 	
-	//GET CLIENT
+	/**
+	 * Client Detail Api
+	 * 
+	 * @param transactionId
+	 * @return
+	 */
 	@RequestMapping("/client")
 	public String getClient(@RequestParam(value = "transactionId", required = true) String transactionId) {
 		return homeworkService.getClient(transactionId);
 	}	
 	
 
-	//GET MERCHANT
+	/**
+	 * Merchant Detail Api
+	 * 
+	 * @param transactionId
+	 * @return
+	 */
 	@RequestMapping("/merchant")
 	public String getMerchant(@RequestParam(value = "transactionId", required = true) String transactionId) {
 		return homeworkService.getMerchant(transactionId);
