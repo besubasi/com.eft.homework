@@ -35,7 +35,7 @@ Ext.onReady(function(){
                     waitMsg:'Please wait to login',	
                     success:function(o,resp){
                     	document.cookie="sessionUserName="+resp.result.sessionUserName+"; sessionUserId="+resp.result.sessionUserId;
-                    	document.location='main2.htm';
+                    	document.location='main.htm';
                     },
                     failure:function(){
                     	Ext.Msg.alert('Error', 'User Name/Password wrong');
