@@ -34,11 +34,11 @@ Ext.onReady(function(){
                     waitTitle:'', 
                     waitMsg:'Please wait to login',	
                     success:function(o,resp){
-                    	document.cookie="sessionUserName="+resp.result.sessionUserName+"; sessionUserId="+resp.result.sessionUserId;
-                    	document.location='main.htm';
+                    	document.cookie="token="+resp.result.token;
+                    	document.location='main.html';
                     },
                     failure:function(){
-                    	Ext.Msg.alert('Error', 'User Name/Password wrong');
+                    	Ext.Msg.alert('Error', 'Email or Password wrong');
                     	Ext.getCmp('password').focus(true);
                     } 
                 }); 

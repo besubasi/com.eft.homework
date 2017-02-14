@@ -8,7 +8,8 @@ public interface ClearSettleService {
 	
 	public String getReport(String fromDate, String toDate, Integer merchant, Integer acquirer);
 	
-	public String getTransactionList(String fromDate, String toDate);
+	public String getTransactionList(String fromDate, String toDate, String status, String paymentMethod,
+			String errorCode, String operation, String page, String merchant, String acquirer);
 	
 	public String getTransaction(String transactionId);
 

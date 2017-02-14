@@ -15,9 +15,9 @@ import com.eft.homework.service.HomeworkService;
 public class HomeworkController {
 
 	@Autowired
-	private final HomeworkService homeworkService;
-
-	public HomeworkController(HomeworkService homeworkService) {
+	private HomeworkService homeworkService;
+	
+	public void setHomeworkService(HomeworkService homeworkService) {
 		this.homeworkService = homeworkService;
 	}
 

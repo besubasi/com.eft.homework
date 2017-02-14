@@ -26,7 +26,7 @@ public class ClearSettleServiceImpl implements ClearSettleService{
 
 		ClearSettleResult result = HomeworkUtil.sendHttpRequest(HomeworkEnums.ClearSettle.LOGIN, params);
 
-		Login login = null;
+		Login login = new Login();
 		if(result.getResponseCode() == 200 ){
 			login = HomeworkUtil.convertJsonToObject(result.getJsonResult(), Login.class);
 			login.setSuccess(true);
@@ -61,7 +61,8 @@ public class ClearSettleServiceImpl implements ClearSettleService{
 	
 
 	@Override
-	public String getTransactionList(String fromDate, String toDate) {
+	public String getTransactionList(String fromDate, String toDate, String status, String paymentMethod,
+			String errorCode, String operation, String page, String merchant, String acquirer) {
 		if(!this.hasToken())
 			return "We don't have Token";
 

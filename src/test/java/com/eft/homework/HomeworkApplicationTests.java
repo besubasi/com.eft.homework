@@ -48,8 +48,17 @@ public class HomeworkApplicationTests {
 		HomeworkUtil.TOKEN = "asdfsjdlfjsldfj";
 		String fromDate = "2017-01-01";
 		String toDate = "2017-02-05";
+		
+		String status = null;
+		String paymentMethod = null;
+		String errorCode = null;
+		String operation = null;
+		
+		String page = null;
+		String merchant = null;
+		String acquirer = null;
 
-		String result = homeworkService.getTransactionList(fromDate, toDate);
+		String result = homeworkService.getTransactionList(fromDate, toDate, status, paymentMethod, errorCode, operation, page, merchant, acquirer);
 		System.out.println("TransactionList : "+result);
 
 	}	
